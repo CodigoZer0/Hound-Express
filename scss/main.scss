@@ -1,0 +1,357 @@
+@import "./mixins";
+@import "./variables";
+
+html{
+    font-family: $fontFamily;
+    font-size: $mainFontSize;
+}
+body{
+    width: 100%;
+    margin: 0;
+    height: 100%;
+}
+
+.header{
+    background-color: #091E3F;
+    @include flexbox(flex-start, center);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 20px solid #ff0000;
+    @include phones{
+        flex-direction: column;
+    }
+    &_img{
+        width: 20%;
+        @include phones{
+            width: 80%;
+
+        }
+    }
+    &_nav{
+        @include flexbox(flex-start, center);
+        flex-direction: row;
+        gap: 20px;
+        @include phones{
+           flex-direction: column;
+        }
+        &-link{
+            @include link($colorWhite, $colorLightBlue);
+            font-weight: 700;
+        }
+        
+    }
+}
+
+.main{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    box-sizing: $boxSizing;
+    &_banner{
+        width: 100%;
+        padding: 60px 0;
+        text-align: center;
+        background-image: url(../img/banner.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-y: 80%;
+        @include grid(2, 1fr, 1, 150px);
+        justify-content: center;
+        box-sizing: border-box;
+        &-text{
+            grid-column: 1;
+            grid-row: 1;
+            box-sizing: border-box;
+            &-title{
+                color: $colorWhite;
+                background-color: $colorDarkBlue;
+                width: 80%;
+                margin: 0 20px;
+                font-size: 40px;
+                box-sizing: border-box;
+                @include phones{
+                    font-size: 20px;
+                }
+            }
+            &-lema{
+                color: $colorWhite;
+                background-color: $colorLightBlue;
+                width: 80%;
+                margin: 0 20px;
+                font-weight: 600;
+                font-size: 24px;
+                text-align: justify;
+                padding: 20px;
+                box-sizing: border-box;
+                @include phones{
+                    font-size: 16px;
+                }
+            }
+        }
+        &-img{
+            grid-column: 2;
+            grid-row: 1;
+            box-sizing: border-box;
+            .banner_img{
+                width: 30%;
+                @include phones{
+                    width: 80%;
+                }
+            }
+        }
+    }
+    &_guide-regis{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 100px 1fr 1fr 100px;
+        grid-template-rows: 75px 1fr;
+        box-sizing: border-box;
+        border-bottom: 10px solid $colorDarkBlue;
+        background-color: $colorDarkBlue;
+        gap: 10px;
+        @include phones{
+            gap: 20px;
+        }
+        &-title{
+            grid-column: 2;
+            grid-row: 1;
+            color: $colorWhite;
+        }
+        &-form{
+            grid-column: 2/4;
+            grid-row: 2;
+            font-weight: 600;
+            width: 30%;
+            color: $colorWhite;
+            fieldset{
+                border: 5px solid $colorLightBlue;
+                
+            }
+            &-input{
+                font-family: $fontFamily;
+                background-color: $colorLightBlue;
+                color: $colorWhite;
+                font-weight: 600;
+                border: none;
+                border-radius: 10px;
+            }
+            &-buttons{
+                padding-top: 10px;
+                &-sumbit{
+                    padding: 15px 20px;
+                    background-color: $colorDarkBlue;
+                    color: $colorWhite;
+                    font-weight: 600;
+                    border: 2px solid $colorLightBlue;
+                    &:hover{
+                        background-color: $colorLightBlue;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    &_general-status-table{
+        width: 100%;
+        @include grid(3, 1fr, 2, 1fr);
+        align-items: center;
+        box-sizing: border-box;
+        text-align: center;
+        border-bottom: $colorDarkBlue 10px solid;
+        &-num-total-guides{
+            grid-column: 1;
+            grid-row: 1;
+            @include tableTitle($colorDarkBlue, $colorWhite);
+            padding: 20px;
+            @include phones{
+                font-size: 0.79rem;
+            }
+        }
+        &-in-transit{
+            grid-column: 2;
+            grid-row: 1;
+            @include tableTitle($colorDarkBlue, $colorWhite);
+            padding: 20px;
+            @include phones{
+                font-size: 0.79rem;
+            }
+        }
+        &-delivered{
+            grid-column: 3;
+            grid-row: 1;
+            @include tableTitle($colorDarkBlue, $colorWhite);
+            padding: 20px;
+            @include phones{
+                font-size: 0.79rem;
+            }
+        }
+        &-row1{
+            grid-column: 1;
+            grid-row: 2;
+            @include tableContent($colorDarkBlue);
+        }
+        &-row2{
+            grid-column: 2;
+            grid-row: 2;
+            @include tableContent($colorDarkBlue);
+        }
+        &-row3{
+            grid-column: 3;
+            grid-row: 2;
+            @include tableContent($colorDarkBlue);
+        }
+
+    }
+    &_lista{
+        width: 100%;
+        @include flexbox(flex-start, flex-start);
+        flex-direction: column ;
+        padding: 0 10px ;
+        gap: 10px;
+        margin-bottom: 10px;
+        box-sizing: $boxSizing;
+        
+        &-guide{
+            align-self: center;
+            &-table{
+                margin-top: 10px;
+                width: 80%;
+                box-sizing: border-box;
+                text-align: center;
+                border: 2px solid $colorDarkBlue;
+                margin: 0 auto;
+                @include tablets{
+                    width: 50%;
+                    font-size: 0.4rem;
+                }
+                
+                &-head{
+                    th{
+                        background-color: $colorDarkBlue;
+                        color: $colorWhite;
+                    }
+    
+                }
+                &-body{
+                    td{
+                        border: 2px solid $colorDarkBlue;
+                        background-color: $colorLightBlue;
+                        color: $colorWhite;
+
+                    }
+                    &-actions{
+                        flex-direction: row;
+                        &-btn{
+                            background-color: $colorDarkBlue;
+                            border: $colorWhite 2px solid;
+                            color: $colorWhite;
+                            @include flexbox(center, center);
+                            flex-wrap: nowrap;
+                            margin-bottom: 5px;
+                            box-sizing: $boxSizing;
+                            @include tablets{
+                                font-size: 0.4rem;
+                            }
+                            img{
+                                width: 25px;
+                                box-sizing: $boxSizing;
+                                padding-right: 5px;
+                                @include tablets{
+                                    width: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+.footer{
+    width: 100%;
+    height: 100%;
+    background-color: $colorDarkBlue;
+    color: $colorWhite;
+    text-align: center;
+    @include flexbox(space-between, center);
+    padding: 20px;
+    box-sizing: border-box;
+    @include phones{
+        flex-direction: column;
+        @include flexbox(flex-start, center);
+    }
+    &_logos{
+        width: 12%;
+        @include flexbox(flex-start, center);
+        padding: 20px;
+        flex-wrap: wrap;
+        &-hound{
+            width: 10rem;
+        }
+        @include phones{
+            padding:0;
+            align-self: flex-start;
+        }
+        &-social-media{
+            
+            padding-left: 28px;
+            img{
+                width: 25px;   
+            }
+            @include phones{
+                @include flexbox(flex-start, center);
+            }
+        }
+    }
+    &_copyright{
+        align-self: flex-end;
+        &-text{
+            font-size: 0.8rem;
+            color: $colorWhite;
+            font-weight: 600;
+        }
+    }
+    &_contact{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 50px;
+        box-sizing: border-box;
+        justify-content: flex-start;
+        align-items: center;
+        color: $colorWhite;
+        gap: 30px;
+        &-title{
+            grid-column: 1;
+            grid-row: 1;
+            font-weight: 600;
+            color: $colorWhite;
+            margin: 0;
+        }
+        &-MX{
+                grid-column: 1;
+                grid-row: 2;
+                text-align: left;
+                @include flexbox(flex-start, flex-start);
+                flex-direction: column;
+            &-title{
+                padding-left: 20px;
+            }
+            &-mail{
+                @include link($colorWhite, $colorLightBlue);
+                img{
+                    width: 25px;
+                    padding-right: 10px
+                }
+            }
+            &-number{
+                @include link($colorWhite, $colorLightBlue);
+                img{
+                    width: 25px;
+                    padding-right: 10px
+                }
+            }
+        }
+    }
+}

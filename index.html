@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./scss/main.css">
+    <title>Hound Express</title>
+</head>
+<body>
+    <header class="header" id="inicio">
+        <img class="header_img" src="img/logoAzulBlancoHE.png" alt="Logo Hound Express">
+        <nav class="header_nav">
+            <a class="header_nav-link" href="#inicio">Inicio</a>
+            <a class="header_nav-link" href="#registro">Registro de Guías</a>
+            <a class="header_nav-link" href="#estado">Estado General</a>
+            <a class="header_nav-link" href="#lista">Lista de Guías</a>
+            <a class="header_nav-link" href="">Buscar Guías</a>
+            <a class="header_nav-link" href="">Historial de Guías</a>        
+        </nav>
+    </header>
+    <main class="main">
+        <section class="main_banner">
+            <div class="main_banner-text">
+                <h2 class="main_banner-text-title">Hound Express</h2>
+                <p class="main_banner-text-lema">Expertos en logística y comercio internacional en México y el mundo </p>
+            </div>
+            <div class="main_banner-img">
+                <img class="banner_img" src="img/customs-avion-barco-carga-bus.png" alt="Imagenes de logistica">
+            </div>      
+        </section>
+        <section class="main_guide-regis" id="registro">
+            <h2 class="main_guide-regis-title">Registro de guías</h2>
+            <form class="main_guide-regis-form">
+                <fieldset>
+                    <legend>Registra tu guía</legend>
+                    <div>
+                        <label for="guide_number">Número de guía</label>
+                        <input class="main_guide-regis-form-input" type="text" name="guide_number">
+                    </div>
+                    <div>
+                        <label for="origin">Origen</label>
+                        <input class="main_guide-regis-form-input" type="text" name="origin">
+                    </div>    
+                    <div>
+                        <label for="destination">Destino</label>
+                        <input class="main_guide-regis-form-input" type="text" name="destination">
+                    </div>
+                    <div>
+                        <label for="receiver">Destinatario</label>
+                        <input class="main_guide-regis-form-input" type="text" name="receiver">
+                    </div>
+                    <div>
+                        <label for="date">Fecha de creación</label>
+                        <input class="main_guide-regis-form-input" type="date" name="date">
+                    </div>    
+                    <div>
+                        <label for="status">Estado inicial</label>
+                        <select class="main_guide-regis-form-input" name="status">
+                            <option value="">--Seleccione una opción</option>
+                            <option value="1">Pendiente</option>
+                            <option value="2">En tránsito</option>
+                            <option value="3">Entregado</option>
+                        </select>
+                    </div>
+                    <div class="main_guide-regis-form-buttons">
+                        <input type="submit" value="Enviar" class="main_guide-regis-form-buttons-sumbit">
+                    </div>
+                </fieldset>    
+            </form>
+        </section>    
+        <section class="main_general-status" id="estado">
+            <h2>Estado General</h2>
+            <div class="main_general-status-table">
+                <p class="main_general-status-table-num-total-guides">Número total de guías activas</p>
+                <p class="main_general-status-table-in-transit ">Guías en tránsito</p>
+                <p class="main_general-status-table-delivered ">Guías entregadas</p>
+                <p class="main_general-status-table-row1 ">100</p>
+                <p class="main_general-status-table-row2 ">50</p>
+                <p class="main_general-status-table-row3 ">50</p>
+            </div>
+        </section>
+        <section class="main_lista" id="lista">
+            <h2 class="main_lista-title">Lista de guias</h2>
+            <div class="main_lista-guide">
+                <table class="main_lista-guide-table" cellpadding="10" cellspacing="0">
+                    <thead class="main_lista-guide-table-head">
+                        <th>Número de guía</th>
+                        <th>Estado actual</th>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Última actualización</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tbody class="main_lista-guide-table-body">
+                        <tr>
+                            <td>XP-3748291056</td>
+                            <td>En tránsito</td>
+                            <td>Guadalajara, Jalisco</td>
+                            <td>Monterrey, Nuevo León</td>
+                            <td>2025-03-10</td>
+                            <td class="main_lista-guide-table-body-actions">
+                                <button class="main_lista-guide-table-body-actions-btn"><img src="img/recharge.png" alt="icono recarga"> Actualizar</button>
+                                <button class="main_lista-guide-table-body-actions-btn"><img src="img/historial.png" alt="icono historial"> Revisar Historial</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TR-5921037485</td>
+                            <td>Entregado</td>
+                            <td>Ciudad de México, CDMX</td>
+                            <td>Querétaro, Querétaro</td>
+                            <td>2025-03-09</td>
+                            <td class="main_lista-guide-table-body-actions">
+                                <button class="main_lista-guide-table-body-actions-btn"><img src="img/recharge.png" alt="icono recarga"> Actualizar</button>
+                                <button class="main_lista-guide-table-body-actions-btn"><img src="img/historial.png" alt="icono historial"> Revisar Historial</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PK-8473201956</td>
+                            <td>En tránsito</td>
+                            <td>Tijuana, Baja California</td>
+                            <td>León, Guanajuato</td>
+                            <td>2025-03-11</td>
+                            <td class="main_lista-guide-table-body-actions">
+                                <button class="main_lista-guide-table-body-actions-btn"><img src="img/recharge.png" alt="icono recarga"> Actualizar</button>
+                                <button class="main_lista-guide-table-body-actions-btn"><img src="img/historial.png" alt="icono historial"> Revisar Historial</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>SH-2109876543</td>
+                            <td>En tránsito</td>
+                            <td>Mérida, Yucatán</td>
+                            <td>Puebla, Puebla</td>
+                            <td>2025-03-08</td>
+                            <td class="main_lista-guide-table-body-actions">
+                                <button class="main_lista-guide-table-body-actions-btn"><img src="img/recharge.png" alt="icono recarga"> Actualizar</button>
+                                <button class="main_lista-guide-table-body-actions-btn"><img src="img/historial.png" alt="icono historial"> Revisar Historial</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>DL-6598324710</td>
+                            <td>En tránsito</td>
+                            <td>Cancún, Quintana Roo</td>
+                            <td>Toluca, Estado de México</td>
+                            <td>2025-03-12</td>
+                            <td class="main_lista-guide-table-body-actions">
+                                <button class="main_lista-guide-table-body-actions-btn"><img src="img/recharge.png" alt="icono recarga"> Actualizar</button>
+                                <button class="main_lista-guide-table-body-actions-btn"><img src="img/historial.png" alt="icono historial"> Revisar Historial</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <section class="footer_logos">
+            <div>
+                <img class="footer_logos-hound" src="img/logoAzulBlancoHE.png" alt="Logo Hound Express" >
+            </div>
+            <div class="footer_logos-social-media">
+                <a href="https://www.linkedin.com/company/hound-express/"><img src="img/linkedin.png" alt="Logo linkedin"></a>
+                <a href="https://www.facebook.com/houndexpress?mibextid=kFxxJD"><img src="img/facebook.png" alt="Logo facebook"></a>
+                <a href="https://www.instagram.com/hound.express"><img src="img/camera.png" alt="Logo instagram"></a>
+            </div>
+        </section>
+        <section class="footer_copyright">
+            <p class="footer_copyright-text">© 2025 Hound Express. Todos los derechos reservados.</p>
+        </section>
+        <section class="footer_contact">
+            <h3 class="footer_contact-title">Contáctanos:</h3>
+            <section class="footer_contact-MX">
+                <h4 class="footer_contact-MX-title">MX</h4>
+                <a class="footer_contact-MX-mail" href="mailto:sclientes1@hound-express.com"><img src="img/email.png" alt="icono email">sclientes1@hound-express.com</a>
+                <a class="footer_contact-MX-number" href="tel:+525540001920"><img src="img/phone.png" alt="icono telefono">+52(55) 4000 1920</p>
+            </section>
+
+        </section>
+    </footer>
+</body>
+</html>

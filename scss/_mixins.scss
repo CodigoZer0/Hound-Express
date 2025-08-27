@@ -1,0 +1,47 @@
+@mixin flexbox($justify, $align) {
+  display: flex;
+
+  justify-content: $justify;
+  align-items: $align;
+}
+@mixin grid($columnQuantity,$columnFraction,$rowQuantity, $rowFraction) {
+  display: grid;
+  grid-template-columns: repeat($columnQuantity, $columnFraction);
+  grid-template-rows: repeat($rowQuantity, $rowFraction);
+
+}
+
+@mixin link($color, $hoverColor) {
+  color: $color;
+  text-decoration: none;
+  &:hover {
+    color: $hoverColor;
+  }
+}
+@mixin tableTitle($bgcolor, $color) {
+    background-color: $bgcolor;
+    color: $color;
+    font-weight: 600;
+    padding: 20px;
+    box-sizing: border-box;
+}
+@mixin tableContent($color){
+    width: 100%;
+    font-weight: 600;
+    padding: 20px;
+    color: $color;
+    box-sizing: border-box;
+}
+
+@mixin tablets{
+    @media screen and (max-width: 850px) {
+        @content;
+        
+    }
+}
+@mixin phones{
+    @media screen and (max-width: 767px) {
+        @content;
+        
+    }
+}
