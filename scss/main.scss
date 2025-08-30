@@ -242,6 +242,19 @@ body{
                     }
                     &-actions{
                         flex-direction: row;
+                        p{
+                            margin: 5px;
+                            font-size: 0.6rem;
+                            font-weight: 600;
+                            color: $colorWhite;
+                            text-align: left;
+                            @include phones{
+                                font-size: 0.4rem;
+                            }
+                            @include tablets{
+                                font-size: 0.4rem;
+                            }
+                        }
                         &-btn{
                             background-color: $colorDarkBlue;
                             border: $colorWhite 2px solid;

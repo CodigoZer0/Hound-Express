@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./scss/main.css">
+    <link rel="icon" type="image/x-icon" href="img/HE_ico.ico">
+    <script src="./js/functions.js" defer></script>
     <title>Hound Express</title>
 </head>
 <body>
@@ -30,32 +32,32 @@
         </section>
         <section class="main_guide-regis" id="registro">
             <h2 class="main_guide-regis-title">Registro de guías</h2>
-            <form class="main_guide-regis-form">
+            <form class="main_guide-regis-form" id="guide-registration-form">
                 <fieldset>
                     <legend>Registra tu guía</legend>
                     <div>
                         <label for="guide_number">Número de guía</label>
-                        <input class="main_guide-regis-form-input" type="text" name="guide_number">
+                        <input class="main_guide-regis-form-input" type="text" name="guide_number" id="guide_number" required>
                     </div>
                     <div>
                         <label for="origin">Origen</label>
-                        <input class="main_guide-regis-form-input" type="text" name="origin">
+                        <input class="main_guide-regis-form-input" type="text" name="origin" id="origin" required>
                     </div>    
                     <div>
                         <label for="destination">Destino</label>
-                        <input class="main_guide-regis-form-input" type="text" name="destination">
+                        <input class="main_guide-regis-form-input" type="text" name="destination" id="destination" required>
                     </div>
                     <div>
                         <label for="receiver">Destinatario</label>
-                        <input class="main_guide-regis-form-input" type="text" name="receiver">
+                        <input class="main_guide-regis-form-input" type="text" name="receiver" id="receiver" required>
                     </div>
                     <div>
                         <label for="date">Fecha de creación</label>
-                        <input class="main_guide-regis-form-input" type="date" name="date">
+                        <input class="main_guide-regis-form-input" type="date" name="date" id="date" required>
                     </div>    
                     <div>
                         <label for="status">Estado inicial</label>
-                        <select class="main_guide-regis-form-input" name="status">
+                        <select class="main_guide-regis-form-input" name="status" id="status" required>
                             <option value="">--Seleccione una opción</option>
                             <option value="1">Pendiente</option>
                             <option value="2">En tránsito</option>
@@ -63,7 +65,7 @@
                         </select>
                     </div>
                     <div class="main_guide-regis-form-buttons">
-                        <input type="submit" value="Enviar" class="main_guide-regis-form-buttons-sumbit">
+                        <input type="submit" value="Enviar" class="main_guide-regis-form-buttons-sumbit" id="submit">
                     </div>
                 </fieldset>    
             </form>
@@ -101,6 +103,12 @@
                             <td class="main_lista-guide-table-body-actions">
                                 <button class="main_lista-guide-table-body-actions-btn"><img src="img/recharge.png" alt="icono recarga"> Actualizar</button>
                                 <button class="main_lista-guide-table-body-actions-btn"><img src="img/historial.png" alt="icono historial"> Revisar Historial</button>
+                                <p>Actualizar estado:</p>
+                                <select class="status-selector main_lista-guide-table-body-actions-btn">
+                                    <option value="1">Pendiente</option>
+                                    <option value="2" selected>En tránsito</option>
+                                    <option value="3">Entregado</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -112,6 +120,12 @@
                             <td class="main_lista-guide-table-body-actions">
                                 <button class="main_lista-guide-table-body-actions-btn"><img src="img/recharge.png" alt="icono recarga"> Actualizar</button>
                                 <button class="main_lista-guide-table-body-actions-btn"><img src="img/historial.png" alt="icono historial"> Revisar Historial</button>
+                                <p>Actualizar estado:</p>
+                                <select class="status-selector main_lista-guide-table-body-actions-btn">
+                                    <option value="1">Pendiente</option>
+                                    <option value="2">En tránsito</option>
+                                    <option value="3" selected>Entregado</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -123,6 +137,12 @@
                             <td class="main_lista-guide-table-body-actions">
                                 <button class="main_lista-guide-table-body-actions-btn"><img src="img/recharge.png" alt="icono recarga"> Actualizar</button>
                                 <button class="main_lista-guide-table-body-actions-btn"><img src="img/historial.png" alt="icono historial"> Revisar Historial</button>
+                                <p>Actualizar estado:</p>
+                                <select class="status-selector main_lista-guide-table-body-actions-btn">
+                                    <option value="1">Pendiente</option>
+                                    <option value="2" selected>En tránsito</option>
+                                    <option value="3">Entregado</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -134,6 +154,12 @@
                             <td class="main_lista-guide-table-body-actions">
                                 <button class="main_lista-guide-table-body-actions-btn"><img src="img/recharge.png" alt="icono recarga"> Actualizar</button>
                                 <button class="main_lista-guide-table-body-actions-btn"><img src="img/historial.png" alt="icono historial"> Revisar Historial</button>
+                                <p>Actualizar estado:</p>
+                                <select class="status-selector main_lista-guide-table-body-actions-btn">
+                                    <option value="1">Pendiente</option>
+                                    <option value="2" selected>En tránsito</option>
+                                    <option value="3">Entregado</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -145,6 +171,12 @@
                             <td class="main_lista-guide-table-body-actions">
                                 <button class="main_lista-guide-table-body-actions-btn"><img src="img/recharge.png" alt="icono recarga"> Actualizar</button>
                                 <button class="main_lista-guide-table-body-actions-btn"><img src="img/historial.png" alt="icono historial"> Revisar Historial</button>
+                                <p>Actualizar estado:</p>
+                                <select class="status-selector main_lista-guide-table-body-actions-btn">
+                                    <option value="1">Pendiente</option>
+                                    <option value="2" selected>En tránsito</option>
+                                    <option value="3">Entregado</option>
+                                </select>
                             </td>
                         </tr>
                     </tbody>

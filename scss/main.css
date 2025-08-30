@@ -294,6 +294,23 @@ body {
 .main_lista-guide-table-body-actions {
   flex-direction: row;
 }
+.main_lista-guide-table-body-actions p {
+  margin: 5px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-align: left;
+}
+@media screen and (max-width: 767px) {
+  .main_lista-guide-table-body-actions p {
+    font-size: 0.4rem;
+  }
+}
+@media screen and (max-width: 850px) {
+  .main_lista-guide-table-body-actions p {
+    font-size: 0.4rem;
+  }
+}
 .main_lista-guide-table-body-actions-btn {
   background-color: #091E3F;
   border: #FFFFFF 2px solid;
