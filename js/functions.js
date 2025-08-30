@@ -200,18 +200,135 @@ function loadGuidesFromSession() {
             </td>
         `;
         tablebody.appendChild(newRow);
-        // Añade el event listener al selector como antes
-        const statusSelector = newRow.querySelector('.status-selector');
-        statusSelector.addEventListener('change', function() {
-            const statusCell = newRow.getElementsByTagName('td')[1];
-            switch (this.value) {
-                case '1': statusCell.textContent = 'Pendiente'; break;
-                case '2': statusCell.textContent = 'En tránsito'; break;
-                case '3': statusCell.textContent = 'Entregado'; break;
-            }
-            saveGuidesToSession();
-            updateGuideCounts();
-        });
+        // Aquí agregas los listeners y la lógica de bloqueo
+        addRowEvents(newRow, fields[0]);
     });
     updateGuideCounts();
 }
+
+// Función para obtener la fecha actual en formato YYYY-MM-DD
+function getCurrentDate() {
+    const d = new Date();
+    return d.toISOString().split('T')[0];
+}
+
+// Función para guardar historial
+function saveHistory(guideNumber, status, date) {
+    const key = 'history_' + guideNumber;
+    let history = sessionStorage.getItem(key) || '';
+    history += `${status} (${date})|`;
+    sessionStorage.setItem(key, history);
+}
+
+// Función para mostrar historial en un modal simple
+function showHistory(guideNumber) {
+    const key = 'history_' + guideNumber;
+    const history = sessionStorage.getItem(key) || '';
+    let html = `<h3>Historial de la guía ${guideNumber}</h3>`;
+    if (history) {
+        html += '<ul>';
+        history.split('|').filter(Boolean).forEach(item => {
+            html += `<li>${item}</li>`;
+        });
+        html += '</ul>';
+    } else {
+        html += '<p>Sin historial.</p>';
+    }
+    // Modal simple
+    let modal = document.getElementById('history-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'history-modal';
+        modal.style.position = 'fixed';
+        modal.style.top = '50%';
+        modal.style.left = '50%';
+        modal.style.transform = 'translate(-50%, -50%)';
+        modal.style.background = '#fff';
+        modal.style.padding = '20px';
+        modal.style.border = '2px solid #091E3F';
+        modal.style.zIndex = 1000;
+        modal.style.maxWidth = '90vw';
+        modal.style.maxHeight = '80vh';
+        modal.style.overflowY = 'auto';
+        modal.innerHTML = html + '<button id="close-history-modal">Cerrar</button>';
+        document.body.appendChild(modal);
+    } else {
+        modal.innerHTML = html + '<button id="close-history-modal">Cerrar</button>';
+        modal.style.display = 'block';
+    }
+    document.getElementById('close-history-modal').onclick = function() {
+        modal.style.display = 'none';
+    };
+}
+
+// Modifica la creación de filas para añadir funcionalidad a los botones
+function addRowEvents(newRow, guideNumber) {
+    // Actualizar estado
+    const updateBtn = newRow.querySelectorAll('.main_lista-guide-table-body-actions-btn')[0];
+    if (updateBtn) {
+        updateBtn.onclick = function(e) {
+            e.preventDefault();
+            const statusCell = newRow.getElementsByTagName('td')[1];
+            const dateCell = newRow.getElementsByTagName('td')[4];
+            // Si ya está en Entregado, no hacer nada
+            if (statusCell.textContent === 'Entregado') {
+                return;
+            }
+            let nextStatus = '';
+            if (statusCell.textContent === 'Pendiente') nextStatus = 'En tránsito';
+            else if (statusCell.textContent === 'En tránsito') nextStatus = 'Entregado';
+            else nextStatus = 'Entregado';
+            statusCell.textContent = nextStatus;
+            dateCell.textContent = getCurrentDate();
+            // Actualiza el selector
+            const selector = newRow.querySelector('.status-selector');
+            if (selector) {
+                if (nextStatus === 'En tránsito') selector.value = '2';
+                else if (nextStatus === 'Entregado') selector.value = '3';
+                else selector.value = '1';
+            }
+            saveHistory(guideNumber, nextStatus, dateCell.textContent);
+            saveGuidesToSession();
+            updateGuideCounts();
+        };
+    }
+
+    // Historial
+    const historyBtn = newRow.querySelectorAll('.main_lista-guide-table-body-actions-btn')[1];
+    if (historyBtn) {
+        historyBtn.onclick = function(e) {
+            e.preventDefault();
+            showHistory(guideNumber);
+        };
+    }
+
+    // Selector de estado manual
+    const statusSelector = newRow.querySelector('.status-selector');
+    if (statusSelector) {
+        statusSelector.onchange = function() {
+            const statusCell = newRow.getElementsByTagName('td')[1];
+            let newStatus = '';
+            switch (this.value) {
+                case '1': newStatus = 'Pendiente'; break;
+                case '2': newStatus = 'En tránsito'; break;
+                case '3': newStatus = 'Entregado'; break;
+            }
+            statusCell.textContent = newStatus;
+            saveHistory(guideNumber, newStatus, newRow.getElementsByTagName('td')[4].textContent);
+            saveGuidesToSession();
+            updateGuideCounts();
+        };
+    }
+}
+
+// Añade listeners a todas las filas existentes al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    updateGuideCounts();
+    loadGuidesFromSession();
+
+    // Para cada fila existente en la tabla
+    document.querySelectorAll('.main_lista-guide-table-body tr').forEach(tr => {
+        const guideNumber = tr.getElementsByTagName('td')[0]?.textContent;
+        if (guideNumber) addRowEvents(tr, guideNumber);
+    });
+});
